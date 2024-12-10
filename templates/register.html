@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Регистрация</h2>
+            <form method="POST" action="" class="needs-validation" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+                    {{ form.username(class="form-control", placeholder="Введите имя пользователя") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            [{{ error }}]
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {{ form.password(class="form-control", placeholder="Введите пароль") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            [{{ error }}]
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {{ form.email(class="form-control", placeholder="Введите email") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            [{{ error }}]
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.phone.label(class="form-control-label") }}
+                    {{ form.phone(class="form-control", placeholder="Введите телефон") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.phone.errors %}
+                            [{{ error }}]
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.full_name.label(class="form-control-label") }}
+                    {{ form.full_name(class="form-control", placeholder="Введите полное имя") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.full_name.errors %}
+                            [{{ error }}]
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-primary btn-block") }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

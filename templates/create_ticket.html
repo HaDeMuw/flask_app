@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Создать новое заявление</h2>
+            <form method="POST" action="" class="needs-validation" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.car_number.label(class="form-control-label") }}
+                    {{ form.car_number(class="form-control", placeholder="Введите номер автомобиля") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.car_number.errors %}
+                            [{{ error }}]
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.description.label(class="form-control-label") }}
+                    {{ form.description(class="form-control", rows="4", placeholder="Введите описание нарушения") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                            [{{ error }}]
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-primary btn-block") }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

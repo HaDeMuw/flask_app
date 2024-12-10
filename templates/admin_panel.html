@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="text-center mb-4">Админ-панель</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Полное имя пользователя</th>
+                <th>Номер автомобиля</th>
+                <th>Описание</th>
+                <th>Статус</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.author.full_name }}</td>
+                    <td>{{ ticket.car_number }}</td>
+                    <td>{{ ticket.description }}</td>
+                    <td>
+                        {% if ticket.status == 'new' %}
+                            <span class="badge badge-primary">{{ ticket.status }}</span>
+                        {% elif ticket.status == 'confirmed' %}
+                            <span class="badge badge-success">{{ ticket.status }}</span>
+                        {% elif ticket.status == 'rejected' %}
+                            <span class="badge badge-danger">{{ ticket.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form method="POST" action="" class="d-inline">
+                            <input type="hidden" name="ticket_id" value="{{ ticket.id }}">
+                            <div class="input-group">
+                                <select name="status" class="custom-select custom-select-sm">
+                                    <option value="new" {% if ticket.status == 'new' %}selected{% endif %}>Новое</option>
+                                    <option value="confirmed" {% if ticket.status == 'confirmed' %}selected{% endif %}>Подтверждено</option>
+                                    <option value="rejected" {% if ticket.status == 'rejected' %}selected{% endif %}>Отклонено</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-sync-alt"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
